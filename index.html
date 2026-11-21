@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Calculator</title>
+<style>
+body{font-family:Arial;background:#f0fdf4;padding:25px}
+main{max-width:550px;margin:auto;background:white;padding:30px;border-radius:16px}
+input{width:100%;padding:12px;margin:8px 0;box-sizing:border-box;border:1px solid #86efac;border-radius:7px}
+button{width:100%;background:#15803d;color:white;padding:14px;border:0;border-radius:8px;cursor:pointer}
+#invoice{background:#dcfce7;padding:20px;margin-top:20px;border-radius:10px;white-space:pre-line;line-height:2}
+</style>
+</head>
+<body>
+<main>
+<h1>Invoice Calculator</h1>
+<p>Calculate product costs and applicable taxes.</p>
+<input id="product" placeholder="Product name">
+<label>Unit Price</label>
+<input id="price" type="number" min="0" step="any" placeholder="Price per unit">
+<label>Quantity</label>
+<input id="quantity" type="number" min="1" value="1">
+<label>Tax Percentage</label>
+<input id="tax" type="number" min="0" value="0">
+<button onclick="calculate()">Generate Invoice</button>
+<div id="invoice">Invoice details will appear here.</div>
+</main>
+<script>
+function calculate(){
+ const product=document.getElementById("product").value.trim();
+ const priceField=document.getElementById("price");
+ const price=Number(priceField.value);
+ const quantity=Number(document.getElementById("quantity").value);
+ const tax=Number(document.getElementById("tax").value);
+ const output=document.getElementById("invoice");
+ if(!product||priceField.value===""||price<0||quantity<1||!Number.isInteger(quantity)||tax<0){
+  output.textContent="Please enter valid invoice details.";
+  return;
+ }
+ const subtotal=price*quantity;
+ const taxAmount=subtotal*tax/100;
+ output.textContent="Product: "+product+
+ "\nQuantity: "+quantity+
+ "\nSubtotal: "+subtotal.toFixed(2)+
+ "\nTax: "+taxAmount.toFixed(2)+
+ "\nGrand Total: "+(subtotal+taxAmount).toFixed(2);
+}
+</script>
+</body>
+</html>
