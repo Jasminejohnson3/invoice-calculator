@@ -22,3 +22,12 @@ Enter product information and generate the invoice.
 ## Running Locally
 
 Open `index.html` in a modern web browser.
+## Manual Testing Checklist
+
+- [ ] Calculate an invoice with a known price and quantity.
+- [ ] Verify tax and final total when tax is configured.
+- [ ] Reject negative prices and invalid quantities.
+
+### Test Notes
+
+Record the observed result and any reproducible issue after running the tests.
